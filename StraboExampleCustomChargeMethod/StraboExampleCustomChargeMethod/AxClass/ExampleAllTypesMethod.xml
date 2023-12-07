@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>ExampleAllTypesMethod</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Example Price Plus custom charge calculation methods that support all 4 types
+/// </summary>
+public final class ExampleAllTypesMethod implements SPRISalesHeaderChargeCalculationMethod, SPRISalesLineChargeCalculationMethod, SPRIPurchaseHeaderChargeCalculationMethod, SPRIPurchaseLineChargeCalculationMethod
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>calculateSalesHeaderCharge</Name>
+				<Source><![CDATA[
+    public List calculateSalesHeaderCharge(SPRChargeTable _chargeTable, SalesTable _salesTable)
+    {
+        // Your logic here;
+
+        return new List(Types::Class);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>calculateSalesLIneCharge</Name>
+				<Source><![CDATA[
+    public List calculateSalesLIneCharge(SPRChargeTable _chargeTable, SalesLine _salesLine)
+    {
+        // Your logic here;
+
+        return new List(Types::Class);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>calculatePurchaseHeaderCharge</Name>
+				<Source><![CDATA[
+    public List calculatePurchaseHeaderCharge(SPRChargeTable _chargeTable, PurchTable _purchTable)
+    {
+        // Your logic here;
+
+        return new List(Types::Class);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>calculatePurchaseLineCharge</Name>
+				<Source><![CDATA[
+    public List calculatePurchaseLineCharge(SPRChargeTable _chargeTable, PurchLine _purchLine)
+    {
+        // Your logic here;
+
+        return new List(Types::Class);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

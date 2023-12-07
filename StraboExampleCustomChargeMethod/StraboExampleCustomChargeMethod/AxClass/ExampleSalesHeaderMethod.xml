@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>ExampleSalesHeaderMethod</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+/// <summary>
+/// Example Price Plus custom charge calculation method
+/// </summary>
+public final class ExampleSalesHeaderMethod implements SPRISalesHeaderChargeCalculationMethod
+{
+}
+
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>calculateSalesHeaderCharge</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// This example creates a charge that is the smaller of $5 and 10% of all the order line total
+    /// </summary>
+    /// <param name = "_chargeTable">The charge being processed</param>
+    /// <param name = "_salesTable">The order the charge will be applied to</param>
+    /// <returns>A list of <c>SPRChargeCalculationMethodResult</c> objects</returns>
+    public List calculateSalesHeaderCharge(SPRChargeTable _chargeTable, SalesTable _salesTable)
+    {
+        Salesline salesLine;
+        MarkupValue value;
+
+        while select salesLine
+            where salesLine.SalesId == _salesTable.SalesId
+        {
+            value += salesLine.LineAmount * 0.1;
+        }
+
+        if (value > 5)
+        {
+            value = 5;
+        }
+
+        SPRChargeCalculationMethodResult result = new SPRChargeCalculationMethodResult();
+        result.Value = value;
+        result.Description = 'Order processing';
+
+        List results = new List(Types::Class);
+        results.addEnd(result);
+
+        return results;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
